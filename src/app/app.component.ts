@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'soft-source-assessment'
 
   primes = this.genPrimes();
-  
+
   primesOutput: number = 0;
   constructor(private primengConfig: PrimeNGConfig) { }
 
@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   onStartPrimeRun(): void {
-     this.primesOutput = this.numPrimorial(2);
+    this.primesOutput = this.numPrimorial(2);
   }
 
   onPrimeEndRun(): void {
@@ -30,19 +30,23 @@ export class AppComponent {
   primorials = [1];
 
 
-
-
   //output primes on the 1 second interval ( and run for 60 seconds)
   numPrimorial(n: number): number {
-    setInterval(() => {
-      while (this.primorials.length <= n) {
+    let counter = 0;
+    const i = setInterval(() => {
+      while (i) {
         this.primorials.push(this.primes?.next().value * this.primorials[this.primorials.length - 1]);
+        counter++;
+        if (counter === 60) {
+          clearInterval(i);
+        }
       }
-    },1000);
 
-      console.log(this.primorials[this.primorials.length - 1]);
-      return this.primorials[this.primorials.length - 1];
-    }
+    }, 1000);
+
+    console.log(this.primorials[this.primorials.length - 1]);
+    return this.primorials[this.primorials.length - 1];
+  }
 
   *genPrimes(): Generator<number> {
     yield 2
