@@ -40,8 +40,8 @@ export class AppComponent {
       }
     },1000);
 
-      console.log(this.primorials);
-      return this.primorials[n];
+      console.log(this.primorials[this.primorials.length - 1]);
+      return this.primorials[this.primorials.length - 1];
     }
 
   *genPrimes(): Generator<number> {
