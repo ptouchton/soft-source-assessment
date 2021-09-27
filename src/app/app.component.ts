@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   onStartPrimeRun(): void {
-    this.primesOutput = this.numPrimorial(2);
+    this.primesOutput = this.numPrimorial(20);
   }
 
   onPrimeEndRun(): void {
@@ -33,16 +33,12 @@ export class AppComponent {
   //output primes on the 1 second interval ( and run for 60 seconds)
   numPrimorial(n: number): number {
     let counter = 0;
-    const i = setInterval(() => {
-      while (i) {
-        this.primorials.push(this.primes?.next().value * this.primorials[this.primorials.length - 1]);
-        counter++;
-        if (counter === 60) {
-          clearInterval(i);
-        }
-      }
-
-    }, 1000);
+    // const i = 
+    setInterval(() => {
+      this.primorials.push(this.primes?.next().value * this.primorials[this.primorials.length - 1]);
+      counter++;
+    }, 1000
+    );
 
     console.log(this.primorials[this.primorials.length - 1]);
     return this.primorials[this.primorials.length - 1];
@@ -52,10 +48,8 @@ export class AppComponent {
     yield 2
     let n = 2;
 
-    while (true) {
-      if (this.isPrime(n)) yield n;
-      n += 2;
-    }
+    if (this.isPrime(n)) yield n;
+    n += 2;
   }
 
   isPrime(n: number): boolean {
